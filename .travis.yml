@@ -13,4 +13,4 @@ matrix:
    - rvm: rbx-2
 addons:
   code_climate:
-    repo_token: 27519af871c1d9576b91e6f264e841eb7b7babbdcda315bf94fcbd095c202949
+    repo_token: 2dbc736868e35e0966df5712c4ac70df10e86a3e8d0d85878a3cbd57b7b086b3
