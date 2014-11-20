@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'dkim_parse'
+require 'resolv'
+
+unless ARGV[0]
+  puts "Please supply at least one host name"
+  exit
+end
+
+resolver = Resolv::DNS.new
+ARGV.each do |arg|
+  puts "____________________________\n"
+  puts "DKIM record search for #{arg}"
+  dkim = DkimParse.check_host(arg, resolver)
+  if dkim
+    puts "  - found DKIM record for #{arg} at #{dkim[:record_path]}:\n  #{dkim[:record]}"
+  else
+    puts "  - no DKIM record found for #{arg}"
+  end
+  puts "____________________________\n\n"
+end
