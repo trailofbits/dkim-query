@@ -1,8 +1,6 @@
 # dkim_parse
 
 [![Code Climate](https://codeclimate.com/github/trailofbits/dkim_parse.png)](https://codeclimate.com/github/trailofbits/dkim_parse) [![Build Status](https://travis-ci.org/trailofbits/dkim_parse.svg)](https://travis-ci.org/trailofbits/dkim_parse)
-[![Gem Version](https://badge.fury.io/rb/dmarc.svg)](http://badge.fury.io/rb/dmarc)
-[![YARD Docs](http://img.shields.io/badge/yard-docs-blue.svg)](http://rubydoc.info/gems/dmarc)
 [![Test Coverage](https://codeclimate.com/github/trailofbits/dkim_parse/badges/coverage.svg)](https://codeclimate.com/github/trailofbits/dkim_parse)
 
 The `dkim_parse` library searches the dkim records for a host. We assume the host uses standard dkim 'selectors', and also check if they use their own 'selector'.
