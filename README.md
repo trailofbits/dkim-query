@@ -7,6 +7,8 @@ The `dkim_parse` library searches the dkim records for a host. We assume the hos
 
 ## Examples
 
+-use a single domain
+
     dkim google.com
     ____________________________
     DKIM record search for google.com
@@ -14,12 +16,28 @@ The `dkim_parse` library searches the dkim records for a host. We assume the hos
       - no DKIM record found for google.com
     ____________________________
 
-    dkim twitter.com
+
+-or a bunch in a row
+
+    dkim trailofbits.com facebook.com yahoo.com
     ____________________________
-    DKIM record search for twitter.com
-      - using selectors: ["default", "dkim", "google", "twitter"]
-      - found DKIM record for twitter.com at dkim._domainkey.twitter.com:
-      v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrZ6zwKHLkoNpHNyPGwGd8wZoNZOk5buOf8wJwfkSZsNllZs4jTNFQLy6v4Ok9qd46NdeRZWnTAY+lmAAV1nfH6ulBjiRHsdymijqKy/VMZ9Njjdy/+FPnJSm3+tG9Id7zgLxacA1Yis/18V3TCfvJrHAR/a77Dxd65c96UvqP3QIDAQAB
+    DKIM record search for trailofbits.com
+      - using selectors: ["default", "dkim", "google", "trailofbits"]
+      - found DKIM record for trailofbits.com at trailofbits._domainkey.trailofbits.com:
+      v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCwe04g1hSR55ACcRiLAg0MoEiY5BBviJHJHq/d9r6o+F50fa1TrNNulwKXaST+WCEcW6D2KZ+dt9JvgB9ApIEAFCzHRXhawga0GsfDkOllvpXgT95IPcnYrSkM+rJSbaqHh+YI5sV9sKnvzZDVmB7l5gU3yD74aDmjs9wSg8RC5wIDAQAB
+    ____________________________
+    
+    ____________________________
+    DKIM record search for facebook.com
+      - using selectors: ["default", "dkim", "google", "facebook"]
+      - found DKIM record for facebook.com at default._domainkey.facebook.com:
+      t=y; k=rsa; p=MHwwDQYJKoZIhvcNAQEBBQADawAwaAJhALkZ4wTn2SQ3EW0vVBExi8izmZZnjZH8JIY5Y964jzDORZku43o6ooFq6HLMjBxmcDYOrJFRdcsKDWtI0Be/uLfc/rClXuyEbcENXfadg77HHv35BI85RNy4TKeai3hxoQIDAQAB;
+    ____________________________
+    
+    ____________________________
+    DKIM record search for yahoo.com
+      - using selectors: ["default", "dkim", "google", "yahoo"]
+      - no DKIM record found for yahoo.com
     ____________________________
 
 ## Install
