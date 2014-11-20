@@ -10,9 +10,17 @@ end
 
 resolver = Resolv::DNS.new
 ARGV.each do |arg|
+
   puts "____________________________\n"
   puts "DKIM record search for #{arg}"
-  dkim = DkimParse.check_host(arg, resolver)
+  begin
+    dkim = DkimParse.check_host(arg, resolver)
+  rescue
+    puts "  -error: could not process input :#{arg}"
+    puts "____________________________\n\n"
+    next
+  end
+  
   if dkim
     puts "  - found DKIM record for #{arg} at #{dkim[:record_path]}:\n  #{dkim[:record]}"
   else
