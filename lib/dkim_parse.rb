@@ -10,7 +10,6 @@ module DkimParse
     puts "  - using selectors: #{defaults}"
     dkim = nil
     defaults.each do |selector|
-      result = nil
       record_path = "#{selector}._domainkey.#{host.downcase}"
       begin
         dkim = resolver.getresource(record_path, Resolv::DNS::Resource::IN::TXT).strings.join
