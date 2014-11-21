@@ -1,8 +1,9 @@
 require "dkim_parse/version"
+require 'resolv'
 
 module DkimParse
 
-  def self.check_host(host, resolver)
+  def self.check_host(host, resolver=Resolv::DNS.new)
     host_without_tld = host[0...host.rindex('.')]
     defaults = %W[default dkim google #{host_without_tld}]
     defaults.uniq!
