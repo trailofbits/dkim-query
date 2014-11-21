@@ -4,7 +4,11 @@ require 'resolv'
 module DkimParse
 
   def self.check_host(host, resolver=Resolv::DNS.new)
-    host_without_tld = host[0...host.rindex('.')]
+    begin
+      host_without_tld = host[0...host.rindex('.')]
+    rescue
+      raise StandardError.new('host'), "invalid hostname"
+    end
     defaults = %W[default dkim google #{host_without_tld}]
     defaults.uniq!
     puts "  - using selectors: #{defaults}"
