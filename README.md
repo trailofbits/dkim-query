@@ -7,6 +7,8 @@ The `dkim_parse` library searches the dkim records for a host. We assume the hos
 
 ## Examples
 
+###CLI
+___
 -use a single domain
 
     dkim google.com
@@ -39,6 +41,16 @@ The `dkim_parse` library searches the dkim records for a host. We assume the hos
       - using selectors: ["default", "dkim", "google", "yahoo"]
       - no DKIM record found for yahoo.com
     ____________________________
+
+###In a project
+___
+
+    require 'dkim_parse'
+    
+    DkimParse.check_host('twitter.com')
+    - using selectors: ["default", "dkim", "google", "twitter"]
+    => {:record=>"v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrZ6zwKHLkoNpHNyPGwGd8wZoNZOk5buOf8wJwfkSZsNllZs4jTNFQLy6v4Ok9qd46NdeRZWnTAY+lmAAV1nfH6ulBjiRHsdymijqKy/VMZ9Njjdy/+FPnJSm3+tG9Id7zgLxacA1Yis/18V3TCfvJrHAR/a77Dxd65c96UvqP3QIDAQAB", :record_path=>"dkim._domainkey.twitter.com"}
+    
 
 ## Install
 
