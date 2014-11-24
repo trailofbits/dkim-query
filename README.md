@@ -47,7 +47,7 @@ ___
 
     require 'dkim_parse'
     
-    DkimParse.check_host('twitter.com')
+    DKIMParse.check_host('twitter.com')
     - using selectors: ["default", "dkim", "google", "twitter"]
     => {:record=>"v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrZ6zwKHLkoNpHNyPGwGd8wZoNZOk5buOf8wJwfkSZsNllZs4jTNFQLy6v4Ok9qd46NdeRZWnTAY+lmAAV1nfH6ulBjiRHsdymijqKy/VMZ9Njjdy/+FPnJSm3+tG9Id7zgLxacA1Yis/18V3TCfvJrHAR/a77Dxd65c96UvqP3QIDAQAB", :record_path=>"dkim._domainkey.twitter.com"}
     

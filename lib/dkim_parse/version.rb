@@ -1,3 +1,3 @@
-module DkimParse
+module DKIMParse
   VERSION = "0.0.2.1"
 end

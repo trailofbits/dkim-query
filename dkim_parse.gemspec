@@ -5,7 +5,7 @@ require 'dkim_parse/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "dkim_parse"
-  gem.version       = DkimParse::VERSION
+  gem.version       = DKIMParse::VERSION
   gem.authors       = ["nicktitle"]
   gem.email         = ["nick.esposito@trailofbits.com"]
   gem.summary       = %q{DKIM Retriever and Parser}

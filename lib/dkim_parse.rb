@@ -1,7 +1,7 @@
 require "dkim_parse/version"
 require 'resolv'
 
-module DkimParse
+module DKIMParse
 
   def self.check_host(host, resolver=Resolv::DNS.new)
     begin

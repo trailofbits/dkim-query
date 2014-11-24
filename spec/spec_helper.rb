@@ -4,7 +4,7 @@ CodeClimate::TestReporter.start
 require 'rspec'
 require 'dkim_parse'
 
-include DkimParse
+include DKIMParse
 
 RSpec.configure do |specs|
   specs

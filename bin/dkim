@@ -14,7 +14,7 @@ ARGV.each do |arg|
   puts "____________________________\n"
   puts "DKIM record search for #{arg}"
   begin
-    dkim = DkimParse.check_host(arg, resolver)
+    dkim = DKIMParse.check_host(arg, resolver)
   rescue
     puts "  -error: could not process input :#{arg}"
     puts "____________________________\n\n"
