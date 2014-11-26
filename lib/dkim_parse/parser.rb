@@ -5,24 +5,30 @@ module DKIMParse
 
     root :record
     rule(:record) do
-      fws? >> key_tag >> fws? >>
-      (str(';') >> fws? >> key_tag >> fws?).repeat(0) >> str(';').maybe
+      (
+        fws? >> key_tag >> fws? >>
+        (str(';') >> fws? >> key_tag >> fws?).repeat(0) >> str(';').maybe
+      ).as(:tag_list)
     end
 
     rule(:key_tag) do
-      key_v_tag |
-      key_g_tag |
-      key_h_tag |
-      key_k_tag |
-      key_n_tag |
-      key_p_tag |
-      key_s_tag |
-      key_t_tag
+      (
+        key_v_tag |
+        key_g_tag |
+        key_h_tag |
+        key_k_tag |
+        key_n_tag |
+        key_p_tag |
+        key_s_tag |
+        key_t_tag
+      ).as(:tag)
     end
 
     def self.key_tag_rule(name,&block)
       rule(:"key_#{name}_tag") do
-        str(name) >> fws? >> str('=') >> fws? >> instance_eval(&block)
+        str(name).as(:name) >>
+        fws? >> str('=') >> fws? >>
+        instance_eval(&block).as(:value)
       end
     end
 
@@ -74,8 +80,10 @@ module DKIMParse
       alpha >> ((alpha | digit | str('-')).repeat(0) >> (alpha | digit)).maybe
     end
     rule(:base64string) do
-      (alpha | digit | str('+') | str('/') | fws).repeat(1) >>
-      (str('=') >> fws? >> (str('=') >> fws?)).maybe
+      (
+        (alpha | digit | str('+') | str('/') | fws).repeat(1) >>
+        (str('=') >> fws? >> (str('=') >> fws?)).maybe
+      ).as(:base64)
     end
 
     #
