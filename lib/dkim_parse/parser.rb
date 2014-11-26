@@ -59,7 +59,7 @@ module DKIMParse
     key_tag_rule('s') do
       key_s_tag_type >> (fws? >> str(':') >> fws? >> key_s_tag_type).repeat(0)
     end
-    rule(:key_s_tag_type) { symbol('email') | str('*') | x_key_s_tag_type }
+    rule(:key_s_tag_type) { symbol('email') | symbol('*') | x_key_s_tag_type }
     rule(:x_key_s_tag_type) { hyphenated_word }
 
     key_tag_rule('t') do
@@ -124,7 +124,7 @@ module DKIMParse
 
       rule(:symbol => simple(:name)) { name.to_sym }
 
-      rule(tag: {name: simple(:name), value: simple(:value)}) do
+      rule(tag: {name: simple(:name), value: subtree(:value)}) do
         {name.to_sym => value}
       end
 
