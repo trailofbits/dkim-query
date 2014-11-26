@@ -35,8 +35,9 @@ module DKIMParse
     key_tag_rule('v') { str('DKIM1') }
     key_tag_rule('g') { key_g_tag_lpart }
     rule(:key_g_tag_lpart) do
-      dot_atom_text? >> (str('*') >> dot_atom_text?).maybe
+      dot_atom_text.maybe >> (str('*') >> dot_atom_text.maybe).maybe
     end
+    rule(:dot_atom_text) { atext.repeat(1) >> (str('.') >> atext.repeat(1)).repeat(0) }
 
     key_tag_rule('h') do
       key_h_tag_alg >>
@@ -105,6 +106,7 @@ module DKIMParse
     rule(:alnum) { match['a-zA-Z0-9'] }
     rule(:valchar) { match['\x21-\x3a'] | match['\x3c-\x7e'] }
     rule(:alnumpunc) { match['a-zA-Z0-9_'] }
+    rule(:atext) { alnum | match['!#$%&\'*+\-/=?^ `{|}~'] }
 
     #
     # Quoted printable
