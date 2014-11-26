@@ -148,5 +148,12 @@ module DKIMParse
       Transform.new.apply(super(text))
     end
 
+    #
+    # @see #parse
+    #
+    def self.parse(text)
+      new.parse(text)
+    end
+
   end
 end
