@@ -32,7 +32,11 @@ module DKIMParse
       end
     end
 
-    key_tag_rule('v') { str('DKIM1') }
+    def symbol(name)
+      str(name).as(:symbol)
+    end
+
+    key_tag_rule('v') { symbol('DKIM1') }
     key_tag_rule('g') { key_g_tag_lpart }
     rule(:key_g_tag_lpart) do
       dot_atom_text.maybe >> (str('*') >> dot_atom_text.maybe).maybe
@@ -43,11 +47,11 @@ module DKIMParse
       key_h_tag_alg >>
       (fws? >> str(':') >> fws? >> key_h_tag_alg).repeat(0)
     end
-    rule(:key_h_tag_alg) { str('sha1') | str('sha256') | x_key_h_tag_alg }
+    rule(:key_h_tag_alg) { symbol('sha1') | symbol('sha256') | x_key_h_tag_alg }
     rule(:x_key_h_tag_alg) { hyphenated_word }
 
     key_tag_rule('k') { key_k_tag_type }
-    rule(:key_k_tag_type) { str('rsa') | x_key_k_tag_type }
+    rule(:key_k_tag_type) { symbol('rsa') | x_key_k_tag_type }
     rule(:x_key_k_tag_type) { hyphenated_word }
 
     key_tag_rule('n') { qp_section }
@@ -55,7 +59,7 @@ module DKIMParse
     key_tag_rule('s') do
       key_s_tag_type >> (fws? >> str(':') >> fws? >> key_s_tag_type).repeat(0)
     end
-    rule(:key_s_tag_type) { str('email') | str('*') | x_key_s_tag_type }
+    rule(:key_s_tag_type) { symbol('email') | str('*') | x_key_s_tag_type }
     rule(:x_key_s_tag_type) { hyphenated_word }
 
     key_tag_rule('t') do
@@ -81,10 +85,8 @@ module DKIMParse
       alpha >> ((alpha | digit | str('-')).repeat(0) >> (alpha | digit)).maybe
     end
     rule(:base64string) do
-      (
-        (alpha | digit | str('+') | str('/') | fws).repeat(1) >>
-        (str('=') >> fws? >> (str('=') >> fws?)).maybe
-      ).as(:base64)
+      (alpha | digit | str('+') | str('/') | fws).repeat(1) >>
+      (str('=') >> fws? >> (str('=') >> fws?)).maybe
     end
 
     #
@@ -117,6 +119,34 @@ module DKIMParse
     rule(:ptext) { hex_octet | safe_char }
     rule(:safe_char) { match['\x21-\x3c'] | match['\x3e-\x7e'] }
     rule(:hex_octet) { str('=') >> match['0-9A-F'].repeat(2,2) }
+
+    class Transform < Parslet::Transform
+
+      rule(:symbol => simple(:name)) { name.to_sym }
+
+      rule(tag: {name: simple(:name), value: simple(:value)}) do
+        {name.to_sym => value}
+      end
+
+      rule(tag_list: subtree(:hashes)) do
+        case hashes
+        when Array then hashes.reduce(&:merge!)
+        else            hashes
+        end
+      end
+
+    end
+
+    #
+    # Parses the text into structured data.
+    #
+    # @param [String] text
+    #
+    # @return [Hash]
+    #
+    def parse(text)
+      Transform.new.apply(super(text))
+    end
 
   end
 end
