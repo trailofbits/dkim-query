@@ -73,10 +73,28 @@ describe Parser do
 
     describe "n" do
       subject { super().key_n_tag }
+
+      let(:notes) { %{A 1024 bit key} }
+
+      it "should parse n=..." do
+        expect(subject.parse("n=#{notes}")).to be == {
+          name: 'n',
+          value: notes
+        }
+      end
     end
 
     describe "p" do
       subject { super().key_p_tag }
+
+      let(:base64) { %{MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB} }
+
+      it "should parse p=..." do
+        expect(subject.parse("p=#{base64}")).to be == {
+          name: 'p',
+          value: base64
+        }
+      end
     end
 
     describe "s" do
