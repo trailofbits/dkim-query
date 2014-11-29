@@ -1,16 +1,18 @@
 language: ruby
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.1
-  - 2.1.2
-  - ruby-head
-  - jruby-19mode
-  - jruby-head
-  - rbx-2
+- 1.9.3
+- 2.0
+- 2.1
+- ruby-head
+- jruby-19mode
+- jruby-head
+- rbx-2
 matrix:
   allow_failures:
-   - rvm: rbx-2
+  - rvm: rbx-2
 addons:
   code_climate:
     repo_token: 2dbc736868e35e0966df5712c4ac70df10e86a3e8d0d85878a3cbd57b7b086b3
+notifications:
+  webhooks:
+    secure: fn715Nw+6eAdSwVLdMXjD5+WXK16ZuI0C+ojaaB963H9jhSsLOWnMx6GdLJRGM5VFEVz8PcN/eCs9F78tXTy3qQ+cOx4FWtU7pEs+gKMLWAnDQFzEnHgcOMaym3mk1jUdLg2qdM0V20+IMtRaXM4dQPTgLxADh1MYDoc3KUroHM=
