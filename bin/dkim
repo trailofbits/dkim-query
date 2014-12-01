@@ -3,7 +3,7 @@
 require 'dkim_parse'
 
 unless ARGV[0]
-  puts "Please supply at least one host name"
+  warn "Please supply at least one host name"
   exit
 end
 
