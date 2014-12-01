@@ -53,6 +53,15 @@ module DKIMParse
       @v, @g, @h, @k, @n, @p, @s, @t = tags.values_at(:v,:g,:h,:k,:n,:p,:s,:t)
     end
 
+    #
+    # Parses a DKIM Key record.
+    #
+    # @param [String] record
+    #   The DKIM key record.
+    #
+    # @return [Key]
+    #   The new key.
+    #
     def self.parse(record)
       new(Parser.parse(record))
     end
