@@ -66,5 +66,23 @@ module DKIMParse
       new(Parser.parse(record))
     end
 
+    #
+    # Converts the key to a Hash.
+    #
+    # @return [Hash{:v,:g,:h,:k,:n,:p,:s,:t => Object}]
+    #
+    def to_hash
+      {
+        v: @v,
+        g: @g,
+        h: @h,
+        k: @k,
+        n: @n,
+        p: @p,
+        s: @s,
+        t: @t
+      }
+    end
+
   end
 end
