@@ -1,4 +1,5 @@
-require "dkim_parse/version"
+require 'dkim_parse/version'
+require 'dkim_parse/key'
 require 'resolv'
 
 module DKIMParse
