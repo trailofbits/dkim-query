@@ -4,28 +4,28 @@ module DKIMParse
   class Key
 
     attr_reader :v
-    alias v version
+    alias version v
 
     attr_reader :g
-    alias g granularity
+    alias granularity g
 
     attr_reader :h
-    alias h hash
+    alias hash h
 
     attr_reader :k
-    alias k key
+    alias key k
 
     attr_reader :n
-    alias n notes
+    alias notes n
 
     attr_reader :p
-    alias p public_key
+    alias public_key p
 
     attr_reader :s
-    alias s service_type
+    alias service_type s
 
     attr_reader :t
-    alias t flags
+    alias flags t
 
     #
     # Initialize the key.
