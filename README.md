@@ -7,6 +7,36 @@ The `dkim_parse` library searches the dkim records for a host. We assume the hos
 
 ## Examples
 
+Parse a DKIM record:
+
+    require 'dkim_parse'
+
+    key = DKIMParse::Key.parse("k=rsa;  p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB; n=A 1024 bit key")
+    
+    key.v
+    # => nil
+
+    key.g
+    # => nil
+
+    key.h
+    # => nil
+
+    key.k
+    # => :rsa
+
+    key.n
+    # => "A 1024 bit key"@230
+
+    key.p
+    # => "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB"@10
+
+    key.s
+    # => nil
+
+    key.t
+    # => nil
+
 ###CLI
 ___
 -use a single domain
