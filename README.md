@@ -1,9 +1,10 @@
-# dkim_parse
+# dkim-query
 
-[![Code Climate](https://codeclimate.com/github/trailofbits/dkim_parse.png)](https://codeclimate.com/github/trailofbits/dkim_parse) [![Build Status](https://travis-ci.org/trailofbits/dkim_parse.svg)](https://travis-ci.org/trailofbits/dkim_parse)
-[![Test Coverage](https://codeclimate.com/github/trailofbits/dkim_parse/badges/coverage.svg)](https://codeclimate.com/github/trailofbits/dkim_parse)
+[![Code Climate](https://codeclimate.com/github/trailofbits/dkim-query/badges/gpa.svg)](https://codeclimate.com/github/trailofbits/dkim-query)
+[![Test Coverage](https://codeclimate.com/github/trailofbits/dkim-query/badges/coverage.svg)](https://codeclimate.com/github/trailofbits/dkim-query)
+[![Build Status](https://travis-ci.org/trailofbits/dkim-query.svg)](https://travis-ci.org/trailofbits/dkim-query)
 
-The `dkim_parse` library searches the dkim records for a host. We assume the host uses standard dkim 'selectors', and also check if they use their own 'selector'.
+The `dkim-query` library searches the dkim records for a host. We assume the host uses standard dkim 'selectors', and also check if they use their own 'selector'.
 
 ## Examples
 
