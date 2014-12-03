@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.license       = "MIT"
 
   gem.files         = `git ls-files -z`.split("\x0")
-  gem.executables   = ['dkim']
+  gem.executables   = ['dkim-query']
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
   gem.required_ruby_version = '>= 1.9.1'

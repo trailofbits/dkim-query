@@ -44,10 +44,10 @@ Query all keys for a domain:
     # => #<DKIM::Query::Domain:0x0000000315c950 @name="yahoo.com", @keys={"s1024"=>#<DKIM::Query::Key:0x0000000315c9f0 @v=nil, @g=nil, @h=nil, @k=:rsa, @n="A 1024 bit key;"@230, @p="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB"@10, @s=nil, @t=nil>}>
 
 ## Synopsis
-___
--use a single domain
 
-    dkim google.com
+Query a domain:
+
+    dkim-query google.com
     ____________________________
     DKIM record search for google.com
       - using selectors: ["default", "dkim", "google"]
@@ -55,9 +55,9 @@ ___
     ____________________________
 
 
--or a bunch in a row
+Query multiple domains:
 
-    dkim trailofbits.com facebook.com yahoo.com
+    dkim-query trailofbits.com facebook.com yahoo.com
     ____________________________
     DKIM record search for trailofbits.com
       - using selectors: ["default", "dkim", "google", "trailofbits"]
