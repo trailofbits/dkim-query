@@ -43,7 +43,7 @@ Query all keys for a domain:
     DKIMParse::Domain.query('yahoo.com')
     # => #<DKIMParse::Domain:0x0000000315c950 @name="yahoo.com", @keys={"s1024"=>#<DKIMParse::Key:0x0000000315c9f0 @v=nil, @g=nil, @h=nil, @k=:rsa, @n="A 1024 bit key;"@230, @p="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB"@10, @s=nil, @t=nil>}>
 
-###CLI
+## Synopsis
 ___
 -use a single domain
 
@@ -77,16 +77,6 @@ ___
       - using selectors: ["default", "dkim", "google", "yahoo"]
       - no DKIM record found for yahoo.com
     ____________________________
-
-###In a project
-___
-
-    require 'dkim_parse'
-    
-    DKIMParse.check_host('twitter.com')
-    - using selectors: ["default", "dkim", "google", "twitter"]
-    => {:record=>"v=DKIM1; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCrZ6zwKHLkoNpHNyPGwGd8wZoNZOk5buOf8wJwfkSZsNllZs4jTNFQLy6v4Ok9qd46NdeRZWnTAY+lmAAV1nfH6ulBjiRHsdymijqKy/VMZ9Njjdy/+FPnJSm3+tG9Id7zgLxacA1Yis/18V3TCfvJrHAR/a77Dxd65c96UvqP3QIDAQAB", :record_path=>"dkim._domainkey.twitter.com"}
-    
 
 ## Install
 
