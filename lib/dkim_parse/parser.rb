@@ -144,15 +144,8 @@ module DKIMParse
     #
     # @return [Hash]
     #
-    def parse(text)
-      Transform.new.apply(super(text))
-    end
-
-    #
-    # @see #parse
-    #
     def self.parse(text)
-      new.parse(text)
+      Transform.new.apply(new.parse(text))
     end
 
   end

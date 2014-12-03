@@ -2,7 +2,9 @@ require 'spec_helper'
 require 'dkim_parse/parser'
 
 describe Parser do
-  describe "#parse" do
+  describe ".parse" do
+    subject { described_class }
+
     let(:dkim) do
       %{k=rsa;  p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB; n=A 1024 bit key;}
     end
