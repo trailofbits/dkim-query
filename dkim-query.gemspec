@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'dkim_parse/version'
+require 'dkim/query/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "dkim_parse"
-  gem.version       = DKIMParse::VERSION
+  gem.name          = "dkim-query"
+  gem.version       = DKIM::Query::VERSION
   gem.authors       = ["nicktitle"]
   gem.email         = ["nick.esposito@trailofbits.com"]
   gem.summary       = %q{DKIM Retriever and Parser}
   gem.description   = %q{Search and retrieve DKIM records for any number of hosts}
-  gem.homepage      = "https://github.com/trailofbits/dkim_parse#readme"
+  gem.homepage      = "https://github.com/trailofbits/dkim-query#readme"
   gem.license       = "MIT"
 
   gem.files         = `git ls-files -z`.split("\x0")

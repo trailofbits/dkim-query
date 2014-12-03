@@ -4,9 +4,9 @@ if ENV['CODECLIMATE_REPO_TOKEN']
 end
 
 require 'rspec'
-require 'dkim_parse'
+require 'dkim/query'
 
-include DKIMParse
+include DKIM::Query
 
 RSpec.configure do |specs|
   specs

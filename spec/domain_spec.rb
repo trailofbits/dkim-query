@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'dkim_parse/domain'
+require 'dkim/query/domain'
 
 describe Domain do
   describe "#initialize" do

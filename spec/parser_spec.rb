@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'dkim_parse/parser'
+require 'dkim/query/parser'
 
 describe Parser do
   describe ".parse" do
