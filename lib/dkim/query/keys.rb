@@ -4,7 +4,7 @@ require 'resolv'
 
 module DKIM
   module Query
-    class Domain
+    class Keys
 
       # Default known selectors
       SELECTORS = %w[default dkim s1024]

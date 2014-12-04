@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'dkim/query/domain'
+require 'dkim/query/keys'
 
-describe Domain do
+describe Keys do
   describe "#initialize" do
     let(:domain) { 'yahoo.com' }
     let(:key) do
