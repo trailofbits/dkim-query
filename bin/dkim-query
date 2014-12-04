@@ -14,7 +14,7 @@ ARGV.each do |arg|
   puts "____________________________\n"
   puts "DKIM record search for #{arg}"
 
-  domain = DKIM::Query::Domain.query(arg)
+  domain = DKIM::Query::Keys.query(arg)
 
   unless domain.keys.empty?
     puts "- found DKIM record for #{arg}"
