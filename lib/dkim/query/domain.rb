@@ -6,6 +6,8 @@ module DKIM
   module Query
     class Domain
 
+      include Enumerable
+
       # Default known selectors
       SELECTORS = %w[default dkim s1024]
 
@@ -107,6 +109,37 @@ module DKIM
         end
 
         return parse(domain,keys)
+      end
+
+      #
+      # Enumerates over each individual key.
+      #
+      # @yield [key]
+      #   The given block will be passed each key.
+      #
+      # @yieldparam [DKIM::Query::Key] key
+      #   A key belonging to the domain.
+      #
+      # @return [Enumerator]
+      #   If no block was given, an Enumerator will be returned.
+      #
+      # @api public
+      #
+      def each(&block)
+        @keys.each_value(&block)
+      end
+
+      #
+      # Selects a key from the domain.
+      #
+      # @param [String] selector 
+      #   The selector.
+      #
+      # @return [Key, nil]
+      #   The key within that selector.
+      #
+      def [](selector)
+        @keys[selector]
       end
 
     end
