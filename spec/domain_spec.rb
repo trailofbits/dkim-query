@@ -29,12 +29,12 @@ describe Domain do
     let(:key) do
       %{k=rsa;  p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB; n=A 1024 bit key}
     end
-    let(:keys) { {'s1024' => key} }
+    let(:keys) { {selector => key} }
 
     subject { described_class.parse(domain,keys) }
 
     it "should parse the keys" do
-      expect(subject.keys['s1024']).to be_kind_of(Key)
+      expect(subject.keys[selector]).to be_kind_of(Key)
     end
   end
 
