@@ -1,3 +1,3 @@
 require 'dkim/query/version'
 require 'dkim/query/key'
-require 'dkim/query/keys'
+require 'dkim/query/domain'

@@ -40,8 +40,8 @@ Parse a DKIM record:
 
 Query all keys for a domain:
 
-    DKIM::Query::Keys.query('yahoo.com')
-    # => #<DKIM::Query::Keys:0x0000000315c950 @name="yahoo.com", @keys={"s1024"=>#<DKIM::Query::Key:0x0000000315c9f0 @v=nil, @g=nil, @h=nil, @k=:rsa, @n="A 1024 bit key;"@230, @p="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB"@10, @s=nil, @t=nil>}>
+    DKIM::Query::Domain.query('yahoo.com')
+    # => #<DKIM::Query::Domain:0x0000000315c950 @name="yahoo.com", @keys={"s1024"=>#<DKIM::Query::Key:0x0000000315c9f0 @v=nil, @g=nil, @h=nil, @k=:rsa, @n="A 1024 bit key;"@230, @p="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB"@10, @s=nil, @t=nil>}>
 
 ## Synopsis
 
