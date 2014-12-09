@@ -100,15 +100,10 @@ module DKIM
         selectors.each do |selector|
           host = "#{selector}._domainkey.#{domain}"
 
-          begin
-            keys[selector] = resolver.getresource(
-              host, Resolv::DNS::Resource::IN::TXT
-            ).strings.join
-          rescue Resolv::ResolvError
-          end
+          keys[selector] = Key.query(host)
         end
 
-        return parse(domain,keys)
+        return new(domain,keys)
       end
 
       #
