@@ -99,8 +99,9 @@ module DKIM
 
         selectors.each do |selector|
           host = "#{selector}._domainkey.#{domain}"
+          key  = Key.query(host)
 
-          keys[selector] = Key.query(host)
+          keys[selector] = key if key
         end
 
         return new(domain,keys)
