@@ -1,4 +1,5 @@
 require 'parslet'
+require 'openssl'
 
 module DKIM
   module Query
@@ -56,7 +57,7 @@ module DKIM
       rule(:x_key_k_tag_type) { hyphenated_word }
 
       key_tag_rule('n') { qp_section }
-      key_tag_rule('p') { base64string.maybe }
+      key_tag_rule('p') { base64string.as(:asn1).maybe }
       key_tag_rule('s') do
         key_s_tag_type >> (fws? >> str(':') >> fws? >> key_s_tag_type).repeat(0)
       end
@@ -124,6 +125,7 @@ module DKIM
       class Transform < Parslet::Transform
 
         rule(:symbol => simple(:name)) { name.to_sym }
+        # rule(:asn1 => simple(:blob)) { OpenSSL::ASN1.decode(blob) }
 
         rule(tag: {name: simple(:name), value: subtree(:value)}) do
           {name.to_sym => value}

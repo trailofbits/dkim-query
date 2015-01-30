@@ -94,7 +94,7 @@ describe Parser do
       it "should parse p=..." do
         expect(subject.parse("p=#{base64}")).to be == {
           name: 'p',
-          value: base64
+          value: {asn1: base64}
         }
       end
     end

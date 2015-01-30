@@ -68,29 +68,6 @@ module DKIM
       end
 
       #
-      # Queries and parses the DKIM record.
-      #
-      # @param [String] domain
-      #   The domain containing the DKIM record.
-      #
-      # @param [Resolv::DNS] resolver
-      #   Optional resolver to use.
-      #
-      # @return [Key, nil]
-      #   The parsed key, or `nil` if no DKIM record could be found.
-      #
-      def self.query(domain,resolver=Resolv::DNS.new)
-        begin
-          dkim = resolver.getresource(
-            domain, Resolv::DNS::Resource::IN::TXT
-          ).strings.join
-
-          return parse(dkim)
-        rescue Resolv::ResolvError
-        end
-      end
-
-      #
       # Converts the key to a Hash.
       #
       # @return [Hash{:v,:g,:h,:k,:n,:p,:s,:t => Object}]

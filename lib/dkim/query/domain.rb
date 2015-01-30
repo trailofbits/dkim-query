@@ -1,3 +1,4 @@
+require 'dkim/query/query'
 require 'dkim/query/key'
 
 require 'resolv'
@@ -7,9 +8,6 @@ module DKIM
     class Domain
 
       include Enumerable
-
-      # Default known selectors
-      SELECTORS = %w[default dkim s1024]
 
       # Name of the domain
       #
@@ -38,20 +36,6 @@ module DKIM
       end
 
       #
-      # @api private
-      #
-      def self.selectors_for(host)
-        SELECTORS + [host_without_tld(host)]
-      end
-
-      #
-      # @api private
-      #
-      def self.host_without_tld(host)
-        host[0,host.rindex('.')]
-      end
-
-      #
       # Parses the DKIM Keys.
       #
       # @param [String] domain
@@ -74,6 +58,31 @@ module DKIM
       end
 
       #
+      # Parses the DKIM Keys.
+      #
+      # @param [String] domain
+      #   The domain the keys belong to.
+      #
+      # @param [Hash{String => String}] keys
+      #   The DKIM selectors and keys.
+      #
+      # @return [Domain]
+      #   The domain and it's parsed DKIM keys.
+      #
+      # @raise [Parslet::ParseFailed]
+      #   One of the keys was invalid.
+      #
+      # @api semipublic
+      #
+      def self.parse!(domain,keys={})
+        keys = Hash[keys.map { |selector,record|
+          [selector, Key.parse!(record)]
+        }]
+
+        return new(domain,keys)
+      end
+
+      #
       # Queries the domain for all DKIM selectors.
       #
       # @param [String] domain
@@ -90,21 +99,7 @@ module DKIM
       # @api public
       #
       def self.query(domain,options={})
-        selectors = options.fetch(:selectors) do
-          selectors=selectors_for(domain)
-        end
-        resolver = options.fetch(:resolver) { Resolv::DNS.new }
-
-        keys = {}
-
-        selectors.each do |selector|
-          host = "#{selector}._domainkey.#{domain}"
-          key  = Key.query(host)
-
-          keys[selector] = key if key
-        end
-
-        return new(domain,keys)
+        parse(domain,Query.query(domain,options))
       end
 
       #

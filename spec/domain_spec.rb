@@ -66,30 +66,6 @@ describe Domain do
     end
   end
 
-  describe ".host_without_tld" do
-    subject { described_class }
-
-    let(:tld)    { ".com" }
-
-    it "should strip the last component of the domain" do
-      expect(subject.host_without_tld(domain)).to be == domain.chomp(tld)
-    end
-  end
-
-  describe ".selectors_for" do
-    subject { described_class.selectors_for(domain) }
-
-    described_class::SELECTORS.each do |selector|
-      it "should include '#{selector}'" do
-        expect(subject).to include(selector)
-      end
-    end
-
-    it "should include the domain without the TLD" do
-      expect(subject).to include('yahoo')
-    end
-  end
-
   describe "#each" do
     context "when given a block" do
       it "should yield each Key" do

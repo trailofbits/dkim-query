@@ -40,24 +40,6 @@ describe Key do
     end
   end
 
-  describe ".query" do
-    let(:domain) { 's1024._domainkey.yahoo.com' }
-
-    subject { described_class.query(domain) }
-
-    it "should query and parse the DKIM record into a Key" do
-      expect(subject).to be_kind_of(described_class)
-    end
-
-    context "when given an invalid domain" do
-      let(:domain) { 'foo._domainkey.example.com' }
-
-      it "should return nil" do
-        expect(subject).to be_nil
-      end
-    end
-  end
-
   describe "#to_hash" do
     subject { super().to_hash }
 
