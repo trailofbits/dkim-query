@@ -85,6 +85,26 @@ module DKIM
         }
       end
 
+      #
+      # Converts the key back into a DKIM String.
+      #
+      # @return [String]
+      #
+      def to_s
+        tags = []
+
+        tags << "v=#{@v}" if @v
+        tags << "g=#{@g}" if @g
+        tags << "h=#{@h}" if @h
+        tags << "k=#{@k}" if @k
+        tags << "p=#{@p}" if @p
+        tags << "s=#{@s}" if @s
+        tags << "t=#{@t}" if @t
+        tags << "n=#{@n}" if @n
+
+        return tags.join('; ')
+      end
+
     end
   end
 end

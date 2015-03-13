@@ -55,4 +55,10 @@ describe Key do
       expect(subject[:n]).to be == n
     end
   end
+
+  describe "#to_s" do
+    it "should return a semicolon deliminited string" do
+      expect(subject.to_s).to be == "k=#{k}; p=#{p}; n=#{n}"
+    end
+  end
 end
