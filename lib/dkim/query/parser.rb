@@ -125,7 +125,9 @@ module DKIM
       class Transform < Parslet::Transform
 
         rule(:symbol => simple(:name)) { name.to_sym }
+        # XXX: temporarily disable ASN1 decoding, due to an OpenSSL bug.
         # rule(:asn1 => simple(:blob)) { OpenSSL::ASN1.decode(blob) }
+        rule(:asn1 => simple(:blob)) { blob }
 
         rule(tag: {name: simple(:name), value: subtree(:value)}) do
           {name.to_sym => value}
