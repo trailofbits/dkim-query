@@ -6,6 +6,8 @@ describe Key do
   let(:p) { "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB" }
   let(:n) { "A 1024 bit key;" }
 
+  let(:record) { %{k=#{k};  p=#{p}; n=#{n}} }
+
   subject do
     described_class.new(
       k: k,
@@ -28,15 +30,29 @@ describe Key do
     end
   end
 
-  describe ".parse" do
-    let(:record) do
-      %{k=rsa;  p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDrEee0Ri4Juz+QfiWYui/E9UGSXau/2P8LjnTD8V4Unn+2FAZVGE3kL23bzeoULYv4PeleB3gfmJiDJOKU3Ns5L4KJAUUHjFwDebt0NP+sBK0VKeTATL2Yr/S3bT/xhy+1xtj4RkdV7fVxTn56Lb4udUnwuxK4V5b5PdOKj/+XcwIDAQAB; n=A 1024 bit key}
-    end
-
-    subject { described_class.parse(record) }
+  describe ".parse!" do
+    subject { described_class.parse!(record) }
 
     it "should return a Key" do
       expect(subject).to be_kind_of(described_class)
+    end
+  end
+
+  describe ".parse" do
+    subject { described_class.parse(record) }
+
+    context "when parsing a valid DKIM Key record" do
+      it "should return a Key" do
+        expect(subject).to be_kind_of(described_class)
+      end
+    end
+
+    context "when parsing an invalid DKIM Key record" do
+      let(:record) { "v=spf1" }
+
+      it "should return a MalformedKey" do
+        expect(subject).to be_kind_of(MalformedKey)
+      end
     end
   end
 

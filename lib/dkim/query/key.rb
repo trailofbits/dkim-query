@@ -1,4 +1,5 @@
 require 'dkim/query/parser'
+require 'dkim/query/malformed_key'
 
 module DKIM
   module Query
@@ -63,8 +64,29 @@ module DKIM
       # @return [Key]
       #   The new key.
       #
-      def self.parse(record)
+      # @raise [Parslet::ParseFailed]
+      #   Could not parse the DKIM Key record.
+      #
+      def self.parse!(record)
         new(Parser.parse(record))
+      end
+
+      #
+      # Parses a DKIM Key record.
+      #
+      # @param [String] record
+      #   The DKIM key record.
+      #
+      # @return [Key, MalformedKey]
+      #   The parsed key. If the key could not be parsed, a {MalformedKey}
+      #   will be returned.
+      #
+      def self.parse(record)
+        begin
+          parse!(record)
+        rescue Parslet::ParseFailed => error
+          MalformedKey.new(record,error.cause)
+        end
       end
 
       #
