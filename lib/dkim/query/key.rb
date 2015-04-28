@@ -65,7 +65,7 @@ module DKIM
       # @return [Key]
       #   The new key.
       #
-      # @raise [Parslet::ParseFailed]
+      # @raise [InvalidKey]
       #   Could not parse the DKIM Key record.
       #
       def self.parse!(record)
