@@ -1,3 +1,4 @@
+require 'dkim/query/exceptions'
 require 'dkim/query/parser'
 require 'dkim/query/malformed_key'
 
@@ -69,6 +70,8 @@ module DKIM
       #
       def self.parse!(record)
         new(Parser.parse(record))
+      rescue Parslet::ParseFailed => error
+        raise(InvalidKey.new(error.message,error.cause))
       end
 
       #
