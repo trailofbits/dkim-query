@@ -40,7 +40,7 @@ module DKIM
     end
 
     # Default known selectors
-    SELECTORS = %w[default dkim s1024]
+    SELECTORS = %w[default dkim s1024 c1211]
 
     #
     # @api private
