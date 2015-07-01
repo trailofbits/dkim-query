@@ -3,6 +3,11 @@ require 'openssl'
 
 module DKIM
   module Query
+    #
+    # DKIM parser.
+    #
+    # @see https://tools.ietf.org/html/rfc6376#section-3
+    #
     class Parser < Parslet::Parser
 
       root :record
