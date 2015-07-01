@@ -80,6 +80,11 @@ Query multiple domains:
       - no DKIM record found for yahoo.com
     ____________________________
 
+## Requirements
+
+* [ruby] >= 1.9.1
+* [parslet] ~> 1.6
+
 ## Install
 
     rake install
@@ -89,3 +94,5 @@ Query multiple domains:
 See the {file:LICENSE.txt} file.
 
 [DKIM]: https://tools.ietf.org/html/rfc6376
+[ruby]: https://www.ruby-lang.org/
+[parslet]: http://kschiess.github.io/parslet/
