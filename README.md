@@ -4,7 +4,9 @@
 [![Test Coverage](https://codeclimate.com/github/trailofbits/dkim-query/badges/coverage.svg)](https://codeclimate.com/github/trailofbits/dkim-query)
 [![Build Status](https://travis-ci.org/trailofbits/dkim-query.svg)](https://travis-ci.org/trailofbits/dkim-query)
 
-The `dkim-query` library searches the dkim records for a host. We assume the host uses standard dkim 'selectors', and also check if they use their own 'selector'.
+The `dkim-query` library searches the [DKIM] records for a host. We assume the
+host uses standard dkim 'selectors', and also check if they use their own
+'selector'.
 
 ## Examples
 
@@ -85,3 +87,5 @@ Query multiple domains:
 ## License
 
 See the {file:LICENSE.txt} file.
+
+[DKIM]: https://tools.ietf.org/html/rfc6376
