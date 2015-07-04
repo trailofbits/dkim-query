@@ -26,7 +26,7 @@ module DKIM
         @cause = cause
       end
 
-      alias value to_s
+      alias to_s value
 
     end
   end
