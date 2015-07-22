@@ -1,5 +1,6 @@
 ### 0.2.3 / 2015-07-22
 
+* Fixed a typo in the `dkim-query` util.
 * Convert all text into Strings.
 * Convert `t=y` or `t=s` values to Symbols.
 
