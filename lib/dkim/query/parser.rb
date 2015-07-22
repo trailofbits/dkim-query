@@ -31,6 +31,8 @@ module DKIM
         ).as(:tag)
       end
 
+      private
+
       def self.key_tag_rule(name,&block)
         rule(:"key_#{name}_tag") do
           str(name).as(:name) >>
@@ -42,6 +44,8 @@ module DKIM
       def symbol(name)
         str(name).as(:symbol)
       end
+
+      public
 
       key_tag_rule('v') { symbol('DKIM1') }
       key_tag_rule('g') { key_g_tag_lpart }
