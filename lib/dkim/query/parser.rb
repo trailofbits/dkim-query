@@ -46,13 +46,17 @@ module DKIM
       key_tag_rule('v') { symbol('DKIM1') }
       key_tag_rule('g') { key_g_tag_lpart }
       rule(:key_g_tag_lpart) do
-        dot_atom_text.maybe >> (str('*') >> dot_atom_text.maybe).maybe
+        (
+          dot_atom_text.maybe >>
+          (str('*') >> dot_atom_text.maybe).maybe
+        ).as(:string)
       end
-      rule(:dot_atom_text) { atext.repeat(1) >> (str('.') >> atext.repeat(1)).repeat(0) }
+      rule(:dot_atom_text) do
+        atext.repeat(1) >> (str('.') >> atext.repeat(1)).repeat(0)
+      end
 
       key_tag_rule('h') do
-        key_h_tag_alg >>
-        (fws? >> str(':') >> fws? >> key_h_tag_alg).repeat(0)
+        key_h_tag_alg >> (fws? >> str(':') >> fws? >> key_h_tag_alg).repeat(0)
       end
       rule(:key_h_tag_alg) { symbol('sha1') | symbol('sha256') | x_key_h_tag_alg }
       rule(:x_key_h_tag_alg) { hyphenated_word.as(:string) }
