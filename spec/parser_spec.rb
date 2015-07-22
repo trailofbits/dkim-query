@@ -81,7 +81,7 @@ describe Parser do
       it "should parse n=..." do
         expect(subject.parse("n=#{notes}")).to be == {
           name: 'n',
-          value: notes
+          value: {string: notes}
         }
       end
     end

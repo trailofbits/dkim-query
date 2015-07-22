@@ -55,25 +55,25 @@ module DKIM
         (fws? >> str(':') >> fws? >> key_h_tag_alg).repeat(0)
       end
       rule(:key_h_tag_alg) { symbol('sha1') | symbol('sha256') | x_key_h_tag_alg }
-      rule(:x_key_h_tag_alg) { hyphenated_word }
+      rule(:x_key_h_tag_alg) { hyphenated_word.as(:string) }
 
       key_tag_rule('k') { key_k_tag_type }
       rule(:key_k_tag_type) { symbol('rsa') | x_key_k_tag_type }
-      rule(:x_key_k_tag_type) { hyphenated_word }
+      rule(:x_key_k_tag_type) { hyphenated_word.as(:string) }
 
-      key_tag_rule('n') { qp_section }
+      key_tag_rule('n') { qp_section.as(:string) }
       key_tag_rule('p') { base64string.as(:asn1).maybe }
       key_tag_rule('s') do
         key_s_tag_type >> (fws? >> str(':') >> fws? >> key_s_tag_type).repeat(0)
       end
       rule(:key_s_tag_type) { symbol('email') | symbol('*') | x_key_s_tag_type }
-      rule(:x_key_s_tag_type) { hyphenated_word }
+      rule(:x_key_s_tag_type) { hyphenated_word.as(:string) }
 
       key_tag_rule('t') do
         key_t_tag_flag >> (fws? >> str(':') >> fws? >> key_t_tag_flag).repeat(0)
       end
       rule(:key_t_tag_flag) { match['ys'].as(:symbol) | x_key_t_tag_flag }
-      rule(:x_key_t_tag_flag) { hyphenated_word }
+      rule(:x_key_t_tag_flag) { hyphenated_word.as(:string) }
 
       #
       # Section 2.6: DKIM-Quoted-Printable
@@ -130,6 +130,7 @@ module DKIM
       class Transform < Parslet::Transform
 
         rule(:symbol => simple(:name)) { name.to_sym }
+        rule(:string => simple(:text)) { text.to_s }
         # XXX: temporarily disable ASN1 decoding, due to an OpenSSL bug.
         # rule(:asn1 => simple(:blob)) { OpenSSL::ASN1.decode(blob) }
         rule(:asn1 => simple(:blob)) { blob }
