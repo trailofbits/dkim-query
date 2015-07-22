@@ -1,5 +1,8 @@
 module DKIM
   module Query
+    #
+    # Represents a unparsable DKIM key.
+    #
     class MalformedKey
 
       # Raw value of the DKIM key.

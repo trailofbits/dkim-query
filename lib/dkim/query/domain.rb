@@ -5,6 +5,9 @@ require 'resolv'
 
 module DKIM
   module Query
+    #
+    # Represents the DKIM keys of a domain.
+    #
     class Domain
 
       include Enumerable

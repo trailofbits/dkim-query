@@ -4,29 +4,56 @@ require 'dkim/query/malformed_key'
 
 module DKIM
   module Query
+    #
+    # Represents an individual DKIM signing key.
+    #
     class Key
 
+      # DKIM version.
+      #
+      # @return [:DKIM1]
       attr_reader :v
       alias version v
 
+      # `g=` tag.
+      # 
+      # @return [String, nil]
       attr_reader :g
       alias granularity g
 
+      # `h=` tag.
+      #
+      # @return [:sha1, :sha256, Array<:sha1, :sha256, String>, nil]
       attr_reader :h
       alias hash h
 
+      # `k=` tag.
+      #
+      # @return [:rsa, String]
       attr_reader :k
       alias key k
 
+      # `n=` tag.
+      #
+      # @return [String, nil]
       attr_reader :n
       alias notes n
 
+      # `p=` tag.
+      #
+      # @return [String, nil]
       attr_reader :p
       alias public_key p
 
+      # `s=` tag.
+      #
+      # @return [:email, :*, String, Array<:email, :*, String>, nil]
       attr_reader :s
       alias service_type s
 
+      # `t=` tag.
+      #
+      # @return [:y, :s, String, nil]
       attr_reader :t
       alias flags t
 

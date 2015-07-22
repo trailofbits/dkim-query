@@ -43,12 +43,24 @@ module DKIM
     SELECTORS = %w[default dkim s1024 c1211]
 
     #
+    # DKIM query selectors for the host.
+    #
+    # @param [String] host
+    #
+    # @return [Array<String>]
+    #
     # @api private
     #
     def self.selectors_for(host)
       SELECTORS + [host_without_tld(host)]
     end
 
+    #
+    # Removes the TLD from the hostname.
+    #
+    # @param [String] host
+    #
+    # @return [String]
     #
     # @api private
     #
