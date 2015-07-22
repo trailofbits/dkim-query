@@ -130,14 +130,14 @@ describe Parser do
       it "should parse t=y" do
         expect(subject.parse('t=y')).to be == {
           name: 't',
-          value: 'y'
+          value: {symbol: 'y'}
         }
       end
 
       it "should parse t=s" do
         expect(subject.parse('t=s')).to be == {
           name: 't',
-          value: 's'
+          value: {symbol: 's'}
         }
       end
     end

@@ -72,7 +72,7 @@ module DKIM
       key_tag_rule('t') do
         key_t_tag_flag >> (fws? >> str(':') >> fws? >> key_t_tag_flag).repeat(0)
       end
-      rule(:key_t_tag_flag) { match['ys'] | x_key_t_tag_flag }
+      rule(:key_t_tag_flag) { match['ys'].as(:symbol) | x_key_t_tag_flag }
       rule(:x_key_t_tag_flag) { hyphenated_word }
 
       #
