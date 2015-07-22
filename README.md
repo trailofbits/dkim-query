@@ -94,7 +94,7 @@ Query multiple domains:
 
 ## Install
 
-    rake install
+    $ gem install dkim-query
 
 ## License
 
