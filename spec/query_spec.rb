@@ -12,6 +12,14 @@ describe DKIM::Query do
     it "should strip the last component of the domain" do
       expect(subject.host_without_tld(domain)).to be == domain.chomp(tld)
     end
+
+    context "when given a host with no tld" do
+      let(:domain) { 'test' }
+
+      it "should return the full host" do
+        expect(subject.host_without_tld(domain)).to be == domain
+      end
+    end
   end
 
   describe ".selectors_for" do

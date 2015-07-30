@@ -65,7 +65,9 @@ module DKIM
     # @api private
     #
     def self.host_without_tld(host)
-      host[0,host.rindex('.')]
+      if host.include?('.') then host[0,host.rindex('.')]
+      else                       host
+      end
     end
 
   end
