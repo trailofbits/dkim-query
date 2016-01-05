@@ -40,7 +40,7 @@ module DKIM
     end
 
     # Default known selectors
-    SELECTORS = %w[default dkim s1024 c1211]
+    SELECTORS = %w[default dkim s1024 c1211 mandrill]
 
     #
     # DKIM query selectors for the host.
