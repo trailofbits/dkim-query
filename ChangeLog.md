@@ -1,3 +1,7 @@
+### 0.2.5 / 2016-06-17
+
+* Added `mandrill` and `google` to the list of default DKIM selectors.
+
 ### 0.2.4 / 2015-08-13
 
 * Fixed a bug where the queried host has no TLD (ex: `test`).
