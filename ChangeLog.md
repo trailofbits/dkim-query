@@ -1,3 +1,7 @@
+### 0.2.6 / 2016-07-3
+
+* Fixed a typo in the parser rules.
+
 ### 0.2.5 / 2016-06-17
 
 * Added `mandrill` and `google` to the list of default DKIM selectors.
