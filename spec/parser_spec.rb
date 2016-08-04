@@ -60,6 +60,13 @@ describe Parser do
           ]
         }
       end
+
+      it "should parse h=abc-123-xyz" do
+        expect(subject.parse('h=abc-123-xyz')).to be == {
+          name: 'h',
+          value: {string: 'abc-123-xyz'}
+        }
+      end
     end
 
     describe "k" do
@@ -69,6 +76,13 @@ describe Parser do
         expect(subject.parse('k=rsa')).to be == {
           name: 'k',
           value: {symbol: 'rsa'}
+        }
+      end
+
+      it "should parse k=abc-123-xyz" do
+        expect(subject.parse('k=abc-123-xyz')).to be == {
+          name: 'k',
+          value: {string: 'abc-123-xyz'}
         }
       end
     end
@@ -122,6 +136,13 @@ describe Parser do
           value: [{symbol: 'email'}, {symbol: '*'}]
         }
       end
+
+      it "should parse s=abc-123-xyz" do
+        expect(subject.parse('s=abc-123-xyz')).to be == {
+          name: 's',
+          value: {string: 'abc-123-xyz'}
+        }
+      end
     end
 
     describe "t" do
@@ -140,6 +161,13 @@ describe Parser do
           value: {symbol: 's'}
         }
       end
+
+      it "should parse t=abc-123-xyz" do
+        expect(subject.parse('t=abc-123-xyz')).to be == {
+          name: 't',
+          value: {string: 'abc-123-xyz'}
+        }
+      end
     end
   end
 
@@ -151,6 +179,35 @@ describe Parser do
     end
 
     describe "hyphenated_word" do
+      subject { super().hyphenated_word }
+
+      it "should parse abc" do
+        expect(subject.parse('abc')).to be == 'abc'
+      end
+
+      it "should parse abc123" do
+        expect(subject.parse('abc123')).to be == 'abc123'
+      end
+
+      it "should parse a-b-c" do
+        expect(subject.parse('a-b-c')).to be == 'a-b-c'
+      end
+
+      it "should parse a---b---c" do
+        expect(subject.parse('a---b---c')).to be == 'a---b---c'
+      end
+
+      it "should not parse -a" do
+        expect { subject.parse('-a') }.to raise_error(Parslet::ParseFailed)
+      end
+
+      it "should not parse a-" do
+        expect { subject.parse('a-') }.to raise_error(Parslet::ParseFailed)
+      end
+
+      it "should not parse -" do
+        expect { subject.parse('-') }.to raise_error(Parslet::ParseFailed)
+      end
     end
 
     describe "base64string" do
