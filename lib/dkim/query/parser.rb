@@ -97,7 +97,10 @@ module DKIM
       # Section 2.4: Common ABNF Tokens
       #
       rule(:hyphenated_word) do
-        alpha >> ((alpha | digit | str('-')).repeat(0) >> (alpha | digit)).maybe
+        alpha >> (
+          (str('-').absnt? >> (alpha | digit)) |
+          (str('-').repeat(0) >> (alpha | digit))
+        ).repeat(0)
       end
       rule(:base64string) do
         (alpha | digit | str('+') | str('/') | fws).repeat(1) >>
