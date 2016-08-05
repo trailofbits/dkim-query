@@ -1,4 +1,4 @@
-### 0.2.6 / 2016-07-3
+### 0.2.6 / 2016-08-3
 
 * Fixed a typo in the parser rules.
 
