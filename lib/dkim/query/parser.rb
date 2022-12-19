@@ -98,7 +98,7 @@ module DKIM
       #
       rule(:hyphenated_word) do
         alpha >> (
-          (str('-').absnt? >> (alpha | digit)) |
+          (str('-').absent? >> (alpha | digit)) |
           (str('-').repeat(0) >> (alpha | digit))
         ).repeat(0)
       end
